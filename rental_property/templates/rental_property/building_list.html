@@ -1,0 +1,124 @@
+{%extends 'base.html' %}
+{%load static%}
+{%block content%} 
+{% include 'rental_property/dashboard_nav.html'%}
+<style>
+  #addtenant{
+    color: #012970;
+    
+  }
+  #addtenant #addtenant-link{
+    display: flex;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #012970;
+  transition: 0.3;
+  background: #f6f9ff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  }
+  #addtenant #addtenant-link i{
+    font-size: 25px;
+  margin-right: 10px;
+  color: #012970;
+  }
+  #addtenant  :hover{
+  color: #4154f1;
+  background: #f6f9ff;
+  }
+</style>
+<main id="main" class="main">
+    <div class="row">
+    <div class="pagetitle col-8">
+      <h1>Houses</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'managers-home'%}">Home</a></li>
+          <li class="breadcrumb-item active">Building</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <div id="addtenant" class="col-4">
+      <a id="addtenant-link"  href="{% url 'add-new-manager' %}">
+        <i class="bi bi-building"></i><span>+Add Building</span>
+      </a>
+    </div>
+  </div>
+<section class="section dashboard">
+      
+     
+
+        
+        
+<div class="row"> 
+     
+<div class="col-12 col-xs-12">
+        <div class="card recent-sales">
+  
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                      <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                      </li>
+  
+                      <li><a class="dropdown-item" href="#">Today</a></li>
+                      <li><a class="dropdown-item" href="#">This Month</a></li>
+                      <li><a class="dropdown-item" href="#">This Year</a></li>
+                    </ul>
+                </div>
+  
+                <div class="card-body">
+                    <h5 class="card-title">Building List<span>| Today</span></h5>
+  
+                    <table id="tenantlist" class="table datatable table-border table-sm" cellspacing="0"
+                    width="100% ">
+                      <thead>
+                        <tr>
+                         
+                          <th scope="col" >NAME</th>
+                          <th scope="col">ESTATE</th>
+                          <th scope="col">ADDRESS</th>
+                         
+                          <th scope="col">ADDED</th>
+                          <th scope="col">EDIT</th>
+                          <th scope="col">DELETE</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {%for building in buildings%}
+                        <tr class="justify-content-between">
+                         
+                          <td ><a href="{% url 'building-dashboard' building.slug %}" class="text-primary ">{{building.name}}</a></td>
+                         
+                          <td class="badge bg-success">{{building.estate}}</td>
+                         
+                          <td class=>{{building.address_line}}</td>
+                          
+                          <td>{{building.added}}</td>
+                          <td><a   href="#"> <i class="bi bi-pencil-square"></i></a></td>
+                          <td><a   href="#"> <i class="bi bi-trash"></i></a></td>
+                        </tr>
+                        {%endfor%} 
+                      </tbody>
+                    </table>
+  
+            
+  
+                </div>
+             
+
+         
+               
+        </div><!-- End recent sales --> 
+</div> 
+
+</div>      
+
+
+</section>
+  </main><!-- End #main -->
+  
+{%endblock content%}
